@@ -1,0 +1,68 @@
+service: betting-roulette
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  timeout: 60
+
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - dynamodb:Query
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: '*'
+
+  environment:
+    #DATA TABLES
+    USER_TABLE: user-${self:provider.stage}
+    WALLET_TABLE: wallet-${self:provider.stage}
+    BANK_ACCOUNT_TABLE: bank-account-${self:provider.stage}
+    TRANSACTION_TABLE: transaction-${self:provider.stage}
+    WITHDRAW_TABLE: withdraw-${self:provider.stage}
+    
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+    packager: 'npm' # Packager that will be used to package your external modules
+    excludeFiles: src/**/*.test.[t|j]s # Exclude test files
+  dynamodb:
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+      convertEmptyValues: true
+    stages:
+      - dev
+  warmup:
+    enabled: true
+    events:
+      - schedule: rate(5 minutes)
+    prewarm: true
+    concurrency: 1
+  prune:
+    automatic: true
+    number: 5
+  serverless-offline:
+    httpPort: 4000
+
+functions: ${file(./yml/functions.yml)}
+
+resources:
+  - ${file(./yml/resources/dynamodb.yml)}
+
+plugins:
+  - serverless-webpack
+  - serverless-dynamodb-local
+  - serverless-offline
+  - serverless-plugin-warmup
+  - serverless-dotenv-plugin
