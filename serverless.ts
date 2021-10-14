@@ -11,7 +11,7 @@ const serverlessConfiguration: AWS = {
       webpackConfig: './webpack.config.js',
       includeModules: true,
       packager: 'npm',
-      excludeFiles: 'src/**/*.test.[t|j]s'
+      excludeFiles: 'src/**/*.test.[t|j]s',
     },
     dynamodb: {
       start: {
@@ -19,39 +19,39 @@ const serverlessConfiguration: AWS = {
         inMemory: true,
         migrate: true,
         seed: true,
-        convertEmptyValues: true
+        convertEmptyValues: true,
       },
-      stages: [stage]
+      stages: [stage],
     },
     warmup: {
       enabled: true,
-      events:{
-        schedule: ['rate(5 minutes)']
+      events: {
+        schedule: ['rate(5 minutes)'],
       },
       prewarm: true,
-      concurrency: 1
+      concurrency: 1,
     },
-    prune:{
+    prune: {
       automatic: true,
-      number: 5
+      number: 5,
     },
     'serverless-offline': {
-      httpPort: 4000
-    }
+      httpPort: 4000,
+    },
   },
   plugins: [
-    'serverless-webpack', 
+    'serverless-webpack',
     'serverless-dynamodb-local',
     'serverless-offline',
     'serverless-plugin-warmup',
-    'serverless-dotenv-plugin'
+    'serverless-dotenv-plugin',
   ],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
     apiGateway: {
       minimumCompressionSize: 1024,
-      shouldStartNameWithService: true
+      shouldStartNameWithService: true,
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
