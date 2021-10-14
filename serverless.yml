@@ -10,24 +10,6 @@ provider:
   stage: ${opt:stage, 'dev'}
   timeout: 60
 
-  iamRoleStatements:
-    - Effect: 'Allow'
-      Action:
-        - dynamodb:Query
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
-      Resource: '*'
-
-  environment:
-    #DATA TABLES
-    USER_TABLE: user-${self:provider.stage}
-    WALLET_TABLE: wallet-${self:provider.stage}
-    BANK_ACCOUNT_TABLE: bank-account-${self:provider.stage}
-    TRANSACTION_TABLE: transaction-${self:provider.stage}
-    WITHDRAW_TABLE: withdraw-${self:provider.stage}
-    
 custom:
   webpack:
     webpackConfig: ./webpack.config.js
@@ -57,8 +39,8 @@ custom:
 
 functions: ${file(./yml/functions.yml)}
 
-resources:
-  - ${file(./yml/resources/dynamodb.yml)}
+# resources:
+#   - ${file(./yml/resources/dynamodb.yml)}
 
 plugins:
   - serverless-webpack

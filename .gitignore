@@ -1,3 +1,6 @@
 node_modules
 .webpack
 package-lock.json
+src/**/*.js
+src/**/*.map
+coverage
