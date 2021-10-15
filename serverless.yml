@@ -53,8 +53,8 @@ functions: ${file(./yml/functions.yml)}
 resources:
   - ${file(./yml/resources/dynamodb.yml)}
 plugins:
-  - serverless-webpack
   - serverless-dynamodb-local
+  - serverless-webpack
   - serverless-offline
   - serverless-plugin-warmup
   - serverless-dotenv-plugin

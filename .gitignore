@@ -7,3 +7,4 @@ coverage
 .serverless
 .env
 .dynamodb
+src/libs/dynano.test.ts

@@ -4,10 +4,10 @@ Resources:
     Properties:
       TableName: ${self:provider.environment.ROULETTE_TABLE}
       AttributeDefinitions:
-        - AttributeName: uuid
+        - AttributeName: id
           AttributeType: 'S'
       KeySchema:
-        - AttributeName: 'uuid'
+        - AttributeName: 'id'
           KeyType: 'HASH'
       BillingMode: PAY_PER_REQUEST
   BetDynamoDbTable:
@@ -15,9 +15,9 @@ Resources:
     Properties:
       TableName: ${self:provider.environment.BET_TABLE}
       AttributeDefinitions:
-        - AttributeName: uuid
+        - AttributeName: id
           AttributeType: 'S'
       KeySchema:
-        - AttributeName: 'uuid'
+        - AttributeName: 'id'
           KeyType: 'HASH'
       BillingMode: PAY_PER_REQUEST
