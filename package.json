@@ -4,7 +4,7 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "dev": "serverless offline",
+    "dev": "sls dynamodb start --migrate && serverless offline",
     "deploy": "serverless deploy",
     "lint": "eslint src --ext ts,js --no-ignore",
     "lint-fix": "eslint src --ext ts,js --no-ignore --fix",
@@ -21,6 +21,7 @@
     "aws-sdk": "^2.1008.0",
     "aws-xray-sdk": "^3.3.3",
     "aws-xray-sdk-core": "^3.3.3",
+    "serverless-dynamodb-local": "^0.2.40",
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
@@ -42,7 +43,6 @@
     "prettier": "2.4.1",
     "serverless": "^2.62.0",
     "serverless-dotenv-plugin": "^3.10.0",
-    "serverless-dynamodb-local": "^0.2.40",
     "serverless-iam-roles-per-function": "^3.2.0",
     "serverless-offline": "^8.2.0",
     "serverless-plugin-warmup": "^6.0.0",

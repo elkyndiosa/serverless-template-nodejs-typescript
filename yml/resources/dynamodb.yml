@@ -1,0 +1,23 @@
+Resources:
+  RouletteDynamoDbTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      TableName: ${self:provider.environment.ROULETTE_TABLE}
+      AttributeDefinitions:
+        - AttributeName: uuid
+          AttributeType: 'S'
+      KeySchema:
+        - AttributeName: 'uuid'
+          KeyType: 'HASH'
+      BillingMode: PAY_PER_REQUEST
+  BetDynamoDbTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      TableName: ${self:provider.environment.BET_TABLE}
+      AttributeDefinitions:
+        - AttributeName: uuid
+          AttributeType: 'S'
+      KeySchema:
+        - AttributeName: 'uuid'
+          KeyType: 'HASH'
+      BillingMode: PAY_PER_REQUEST

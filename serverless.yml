@@ -1,4 +1,6 @@
 service: betting-roulette
+disabledDeprecations:
+  - '*' # To disable all deprecation messages
 package:
   individually: true
 provider:
@@ -6,8 +8,11 @@ provider:
   runtime: nodejs14.x
   region: us-east-1
   architecture: arm64
-  stage: ${opt:stage, 'dev'}
+  stage: ${env:STAGE, 'dev'}
   timeout: 60
+  environment:
+    ROULETTE_TABLE: roulette-${self:provider.stage}
+    BET_TABLE: bet-${self:provider.stage}
   tracing:
     apiGateway: true
     lambda: true
@@ -34,6 +39,7 @@ custom:
       convertEmptyValues: true
     stages:
       - dev
+      - local
   warmup:
     enabled: true
     events:
@@ -46,8 +52,8 @@ custom:
   serverless-offline:
     httpPort: 4000
 functions: ${file(./yml/functions.yml)}
-# resources:
-#   - ${file(./yml/resources/dynamodb.yml)}
+resources:
+  - ${file(./yml/resources/dynamodb.yml)}
 plugins:
   - serverless-webpack
   - serverless-dynamodb-local
