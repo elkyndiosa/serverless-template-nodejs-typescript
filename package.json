@@ -9,7 +9,8 @@
     "lint": "eslint src --ext ts,js --no-ignore",
     "lint-fix": "eslint src --ext ts,js --no-ignore --fix",
     "test": "jest --coverage",
-    "test:watch": "jest --coverage --watchAll"
+    "test:watch": "jest --coverage --watchAll",
+    "pretest": "eslint src --ext ts,js --no-ignore --fix"
   },
   "engines": {
     "node": ">=14.15.0"
@@ -32,6 +33,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.2",
     "jest": "^27.2.5",
     "json-schema-to-ts": "^1.5.0",
     "prettier": "2.4.1",
@@ -51,5 +53,10 @@
     "webpack-node-externals": "^2.5.2"
   },
   "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
-  "license": "MIT"
+  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pretest"
+    }
+  }
 }
