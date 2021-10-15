@@ -13,12 +13,14 @@ provider:
   tracing:
     apiGateway: true
     lambda: true
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - xray:PutTraceSegments
-        - xray:PutTelemetryRecords
-      Resource: '*'
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - xray:PutTelemetryRecords
+            - xray:PutTraceSegments
+          Resource: '*'
 
 custom:
   webpack:
@@ -58,3 +60,4 @@ plugins:
   - serverless-offline
   - serverless-plugin-warmup
   - serverless-dotenv-plugin
+  - serverless-iam-roles-per-function
