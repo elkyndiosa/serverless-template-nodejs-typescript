@@ -7,8 +7,18 @@ provider:
   name: aws
   runtime: nodejs14.x
   region: us-east-1
+  architecture: arm64
   stage: ${opt:stage, 'dev'}
   timeout: 60
+  tracing:
+    apiGateway: true
+    lambda: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - xray:PutTraceSegments
+        - xray:PutTelemetryRecords
+      Resource: '*'
 
 custom:
   webpack:
