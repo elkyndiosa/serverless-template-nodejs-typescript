@@ -1,8 +1,6 @@
 service: betting-roulette
-
 package:
   individually: true
-
 provider:
   name: aws
   runtime: nodejs14.x
@@ -21,13 +19,12 @@ provider:
             - xray:PutTelemetryRecords
             - xray:PutTraceSegments
           Resource: '*'
-
 custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
-    packager: 'npm' # Packager that will be used to package your external modules
-    excludeFiles: src/**/*.test.[t|j]s # Exclude test files
+    packager: 'npm'
+    excludeFiles: src/**/*.test.[t|j]s
   dynamodb:
     start:
       port: 8000
@@ -48,12 +45,9 @@ custom:
     number: 5
   serverless-offline:
     httpPort: 4000
-
 functions: ${file(./yml/functions.yml)}
-
 # resources:
 #   - ${file(./yml/resources/dynamodb.yml)}
-
 plugins:
   - serverless-webpack
   - serverless-dynamodb-local
