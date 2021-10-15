@@ -10,7 +10,7 @@
     "lint-fix": "eslint src --ext ts,js --no-ignore --fix",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watchAll",
-    "pretest": "eslint src --ext ts,js --no-ignore --fix"
+    "pretest": "eslint --ignore-path .gitignore . --fix"
   },
   "engines": {
     "node": ">=14.15.0"
@@ -53,10 +53,5 @@
     "webpack-node-externals": "^2.5.2"
   },
   "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
-  "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run pretest"
-    }
-  }
+  "license": "MIT"
 }

@@ -11,7 +11,7 @@
     "outDir": "lib",
     "types": ["node", "jest"]
   },
-  "include": ["src/**/*.ts", "./jest.config.ts"],
+  "include": ["src/**/*.ts", "./jest.config.ts", "./webpack.config.js"],
 
   "exclude": ["node_modules/**/*", ".serverless/**/*", ".webpack/**/*", "_warmup/**/*", ".vscode/**/*"],
   "ts-node": {
