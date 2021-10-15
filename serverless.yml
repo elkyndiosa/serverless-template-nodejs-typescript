@@ -1,6 +1,4 @@
 service: betting-roulette
-disabledDeprecations:
-  - '*' # To disable all deprecation messages
 package:
   individually: true
 provider:
