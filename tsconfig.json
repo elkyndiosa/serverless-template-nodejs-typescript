@@ -1,5 +1,6 @@
 {
   "extends": "./tsconfig.paths.json",
+  "resolveJsonModule": true,
   "compilerOptions": {
     "lib": ["ESNext"],
     "moduleResolution": "node",
@@ -7,9 +8,11 @@
     "noUnusedParameters": true,
     "removeComments": true,
     "sourceMap": true,
-    "target": "ES2020",
+    "target": "ES5",
     "outDir": "lib",
-    "types": ["node", "jest"]
+    "types": ["node", "jest"],
+    "resolveJsonModule": true,
+    "esModuleInterop":true
   },
   "include": ["src/**/*.ts", "./jest.config.ts", "./webpack.config.js", "jest-dynamodb-config.js"],
 

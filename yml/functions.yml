@@ -1,7 +1,10 @@
 hello:
-  handler: src/functions/hello/handler.main
+  handler: src/functions/hello/hello.main
   iamRoleStatementsInherit: true
   events:
     - http:
         path: hello
-        method: get
+        method: post
+        request:
+          schema:
+            application/json: ${file(schemes/hello.json)}

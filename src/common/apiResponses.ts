@@ -23,6 +23,7 @@ function apiResponse({ json, statusCode, allowCORS = true }: ResponseOptions): R
   if (allowCORS) {
     response.headers = {
       'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
       'Content-Type': 'application/json',
     };
   }
