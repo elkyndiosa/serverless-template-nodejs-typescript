@@ -12,13 +12,11 @@ export interface Response {
   headers?: {
     [key: string]: string;
   };
-  allowCORS?: boolean;
 }
 function apiResponse({ json, statusCode, allowCORS = true }: ResponseOptions): Response {
   const response: Response = {
     statusCode,
     body: JSON.stringify(json),
-    allowCORS,
   };
   if (allowCORS) {
     response.headers = {

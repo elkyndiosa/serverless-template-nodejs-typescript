@@ -5,17 +5,14 @@ import middyfy from '@libs/lambda';
 import HelloType from 'src/structures/hello.type';
 import { errorResponse, Response, successResponse } from 'src/common/apiResponses';
 
-const hello: ValidatedEventAPIGatewayProxyEvent<HelloType> = async (
-  event: AWSLambda.APIGatewayEvent,
-): Promise<Response> => {
-  const body = JSON.parse(event.body);
+const hello: ValidatedEventAPIGatewayProxyEvent<HelloType> = async (): Promise<Response> => {
   try {
     return successResponse({
-      message: `Hello ${body.name}, welcome to the exciting Serverless world!`,
+      message: `Hello, welcome to the exciting Serverless world!`,
     });
   } catch (error) {
     return errorResponse({
-      message: `Hello ${body.name}, welcome to the exciting Serverless world!`,
+      message: `Hello, welcome to the exciting Serverless world!`,
     });
   }
 };
