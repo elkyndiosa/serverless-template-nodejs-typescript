@@ -9,8 +9,7 @@ provider:
   stage: ${env:STAGE}
   timeout: 60
   environment:
-    ROULETTE_TABLE: roulette-${self:provider.stage}
-    BET_TABLE: bet-${self:provider.stage}
+    USER_TABLE: user-${self:provider.stage}
   tracing:
     apiGateway: true
     lambda: true
@@ -35,8 +34,8 @@ custom:
       migrate: true
       seed: true
       convertEmptyValues: true
+      path: ./migrations
     stages:
-      - dev
       - local
   warmup:
     enabled: true

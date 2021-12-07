@@ -1,4 +1,5 @@
-import AWS from './aws-sdk';
+import DynamoDB from 'aws-sdk/clients/dynamodb';
+// import AWS from './aws-sdk';
 
 const { IS_OFFLINE, JEST_WORKER_ID } = process.env;
 let options = {};
@@ -16,5 +17,7 @@ if (JEST_WORKER_ID) {
     sslEnabled: false,
   };
 }
-const dynamoDb = new AWS.DynamoDB.DocumentClient(options);
-export default dynamoDb;
+const client = new DynamoDB.DocumentClient(options);
+
+// const dynamoDb = new AWS.DynamoDB.DocumentClient(options);
+export default client;
